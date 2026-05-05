@@ -1,0 +1,135 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/your-org/nf-multiplex-kseq/master/nextflow_schema.json",
+    "title": "nf-multiplex-kseq pipeline parameters",
+    "description": "Multiplex PCR primer design for population genomics",
+    "type": "object",
+    "definitions": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "properties": {
+                "genome": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to reference genome FASTA file"
+                },
+                "target_bed": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "BED file with target regions (optional)"
+                },
+                "annotation": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Genome annotation file (GFF/GTF, optional)"
+                },
+                "outdir": {
+                    "type": "string",
+                    "default": "./results",
+                    "description": "Output directory"
+                }
+            },
+            "required": ["genome"]
+        },
+        "primer_design_parameters": {
+            "title": "Primer design parameters",
+            "type": "object",
+            "properties": {
+                "primer_length": {
+                    "type": "integer",
+                    "default": 20,
+                    "description": "Primer length"
+                },
+                "min_tm": {
+                    "type": "number",
+                    "default": 57.0,
+                    "description": "Minimum melting temperature (°C)"
+                },
+                "max_tm": {
+                    "type": "number",
+                    "default": 63.0,
+                    "description": "Maximum melting temperature (°C)"
+                },
+                "min_gc": {
+                    "type": "number",
+                    "default": 40.0,
+                    "description": "Minimum GC content (%)"
+                },
+                "max_gc": {
+                    "type": "number",
+                    "default": 60.0,
+                    "description": "Maximum GC content (%)"
+                },
+                "min_binding_sites": {
+                    "type": "integer",
+                    "default": 100,
+                    "description": "Minimum primer binding sites"
+                },
+                "max_binding_sites": {
+                    "type": "integer",
+                    "default": 1000,
+                    "description": "Maximum primer binding sites"
+                }
+            }
+        },
+        "amplicon_parameters": {
+            "title": "Amplicon parameters",
+            "type": "object",
+            "properties": {
+                "min_amplicon_size": {
+                    "type": "integer",
+                    "default": 100,
+                    "description": "Minimum amplicon size (bp)"
+                },
+                "max_amplicon_size": {
+                    "type": "integer",
+                    "default": 500,
+                    "description": "Maximum amplicon size (bp)"
+                },
+                "min_amplicons_per_pair": {
+                    "type": "integer",
+                    "default": 100,
+                    "description": "Minimum amplicons per primer pair"
+                },
+                "max_amplicons_per_pair": {
+                    "type": "integer",
+                    "default": 1000,
+                    "description": "Maximum amplicons per primer pair"
+                }
+            }
+        },
+        "multiplex_parameters": {
+            "title": "Multiplex parameters",
+            "type": "object",
+            "properties": {
+                "min_primer_pairs": {
+                    "type": "integer",
+                    "default": 15,
+                    "description": "Minimum primer pairs per multiplex set"
+                },
+                "max_primer_pairs": {
+                    "type": "integer",
+                    "default": 50,
+                    "description": "Maximum primer pairs per multiplex set"
+                },
+                "target_snps": {
+                    "type": "integer",
+                    "default": 50000,
+                    "description": "Target number of SNPs"
+                },
+                "min_snps": {
+                    "type": "integer",
+                    "default": 20000,
+                    "description": "Minimum acceptable number of SNPs"
+                }
+            }
+        }
+    },
+    "allOf": [
+        {"$ref": "#/definitions/input_output_options"},
+        {"$ref": "#/definitions/primer_design_parameters"},
+        {"$ref": "#/definitions/amplicon_parameters"},
+        {"$ref": "#/definitions/multiplex_parameters"}
+    ]
+}
