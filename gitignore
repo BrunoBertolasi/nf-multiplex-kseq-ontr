@@ -1,0 +1,45 @@
+# Nextflow
+.nextflow*
+work/
+results/
+.nextflow.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test data
+test_data/
+*.fasta
+*.fa
+*.fai
+*.bed
+*.gff
+*.gtf
+*.gz
+
+# Reports
+*.html
+*.pdf
+
+# Logs
+*.log
